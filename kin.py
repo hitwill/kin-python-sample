@@ -9,11 +9,14 @@ from agora.error import AccountExistsError
 class Kin:
 
     @staticmethod
-    def generate_key():
-        return PrivateKey.random()
+    def generate_key(same : bool):
+        if same == True:
+            return PrivateKey.from_string('SB27432YDJ2OUG4QKPIP22N4775J2OPB7VZV27KKUSDX2GQVATNTCQKT')
+        else:
+            return PrivateKey.from_string('SCQJNTH2S6HFITKMJYITPTWAPS7GCC52P5C3E3ROWCMESCNMKYX7JY3A')
 
     def __init__(self, env: Environment, app_index: Optional[int] = 0):
-        self.client = Client(env, app_index, kin_version=4)
+        self.client = Client(env, 231, kin_version=4)
 
     def create_account(self, private_key: PrivateKey) -> List[PublicKey]:
         try:
